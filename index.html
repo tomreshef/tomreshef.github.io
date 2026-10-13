@@ -78,6 +78,47 @@
     .paper-link { font-size:12px; min-height:30px; display:inline-flex; align-items:center; }
     .badge { display:inline-block; border-radius:3px; font-size:11px; line-height:1.5; padding:3px 8px; color:var(--accent); background:var(--pale); font-weight:600; }
     .badge-neutral { background:#25333f; color:#bccbd5; }
+
+    /* Keep the complete scientific figure on a light surface in the dark page. */
+    #research-publications { container-type:inline-size; }
+    .publication.has-figure { display:grid; grid-template-columns:160px minmax(0,1fr); align-items:start; gap:24px; }
+    .publication.has-figure[hidden] { display:none; }
+    .publication-copy { min-width:0; }
+    .publication-figure { display:block; width:160px; max-width:100%; align-self:start; text-decoration:none; }
+    .figure-frame { display:flex; align-items:center; justify-content:center; width:100%; aspect-ratio:4 / 3; padding:8px; overflow:hidden; border:1px solid #dce4e7; border-radius:4px; background:#fff; color-scheme:light; }
+    .figure-frame img { display:block; width:100%; height:100%; min-width:0; min-height:0; object-fit:contain; }
+    .figure-action { display:inline-flex; align-items:center; min-height:30px; font-size:11.5px; }
+    .publication-figure:hover .figure-frame { border-color:var(--accent); }
+    .publication-figure:hover .figure-action { text-decoration:underline; text-underline-offset:3px; }
+    @container (max-width:540px) {
+      .publication.has-figure { grid-template-columns:minmax(0,1fr); gap:9px; }
+      .publication-figure { width:220px; }
+    }
+    /* Mobile fallback for browsers without container queries. */
+    @media (max-width:600px), (min-width:721px) and (max-width:840px) {
+      .publication.has-figure { grid-template-columns:minmax(0,1fr); gap:9px; }
+      .publication-figure { width:220px; }
+    }
+    .figure-dialog { width:1100px; max-width:calc(100% - 32px); max-height:calc(100vh - 32px); max-height:calc(100dvh - 32px); padding:0; margin:auto; border:1px solid var(--line); border-radius:6px; background:var(--paper); color:var(--ink); }
+    .figure-dialog:not([open]) { display:none; }
+    .figure-dialog[open] { display:flex; flex-direction:column; }
+    .figure-dialog::backdrop { background:rgba(5,10,15,.84); }
+    .figure-dialog-header { display:flex; align-items:center; justify-content:space-between; gap:16px; flex-shrink:0; padding:12px 16px; }
+    .figure-dialog-header h2 { margin:0; font:600 15px/1.45 -apple-system,BlinkMacSystemFont,"Segoe UI",Arial,sans-serif; letter-spacing:0; }
+    .figure-close { min-width:64px; min-height:44px; padding:7px 12px; border:1px solid var(--line); border-radius:4px; background:var(--soft); color:var(--ink); font-size:13px; cursor:pointer; flex-shrink:0; }
+    .figure-close:hover { border-color:var(--accent); color:var(--accent); }
+    .figure-stage { min-height:0; overflow:auto; padding:16px; background:#fff; color-scheme:light; }
+    .figure-stage img { display:block; width:auto; max-width:100%; height:auto; margin:auto; }
+    .figure-stage img[hidden] { display:none; }
+    .figure-dialog-footer { flex-shrink:0; margin:0; padding:7px 16px; font-size:12px; }
+    .figure-dialog-footer a { display:inline-flex; align-items:center; min-height:36px; }
+    body.figure-open { overflow:hidden; }
+    @media (max-width:400px) {
+      .figure-dialog { max-width:calc(100% - 20px); max-height:calc(100vh - 20px); max-height:calc(100dvh - 20px); }
+      .figure-dialog-header { align-items:flex-start; padding:10px; gap:10px; }
+      .figure-dialog-header h2 { font-size:13px; }
+      .figure-stage { padding:8px; }
+    }
     .publication-summary { color:var(--muted); font-size:13.5px; margin:10px 0 0; }
     .subheading { margin-top:28px; margin-bottom:2px; font-size:14px; }
     .review-paper { padding-top:13px; }
@@ -161,6 +202,11 @@
       h2,h3 { break-after:avoid; }
       .publication { break-inside:avoid; padding:12pt 0; }
       .publication[hidden] { display:block; }
+      #research-publications { container-type:normal; }
+      .publication.has-figure,.publication.has-figure[hidden] { display:grid; grid-template-columns:100px minmax(0,1fr); gap:16px; }
+      .publication-figure { width:100px; }
+      .figure-action,.figure-dialog { display:none !important; }
+
       a { color:var(--ink); text-decoration:none; }
     }
   </style>
@@ -262,49 +308,91 @@
         </div>
         <p id="publication-status" class="sr-only" role="status" aria-live="polite">Showing all 8 research works.</p>
         <ul class="publications" id="research-publications">
-          <li class="publication" data-status="published" id="paper-modeling">
+          <li class="publication has-figure" data-status="published" id="paper-modeling">
+            <a class="publication-figure" href="images/publications/collaborative-modeling.png" data-figure-title="Dynamics of collaborative modeling in an ill-structured real-world problem" aria-label="View larger figure: Dynamics of collaborative modeling in an ill-structured real-world problem">
+              <span class="figure-frame"><img src="images/publications/collaborative-modeling-thumb.webp" alt="Timeline of collaborative modeling phases, showing participants’ evolving models and alignment over time." width="640" height="427" loading="lazy" decoding="async"></span>
+              <span class="figure-action" aria-hidden="true">View figure ↗</span>
+            </a>
+            <div class="publication-copy">
             <h3><a href="https://doi.org/10.1103/44fz-2y3x" target="_blank" rel="noopener noreferrer">Dynamics of collaborative modeling in an ill-structured real-world problem</a></h3>
             <p class="authors"><strong>T. Reshef-Israeli</strong> &amp; S. Kapon</p>
             <p class="venue"><em>Physical Review Physics Education Research</em>, 22(1), 010141 · 2026</p>
             <p class="publication-summary">A time-resolved analysis of collaborative reasoning that tracks modeling phases and alignment around shared physical models.</p>
             <div class="paper-footer"><span class="badge">Editors’ Suggestion</span><a class="paper-link" href="https://doi.org/10.1103/44fz-2y3x" target="_blank" rel="noopener noreferrer">Article ↗</a></div>
+            </div>
           </li>
-          <li class="publication" data-status="in-press" id="paper-discovery">
+          <li class="publication has-figure" data-status="in-press" id="paper-discovery">
+            <a class="publication-figure" href="images/publications/mathematical-discovery.svg" data-figure-title="From mathematical structure to physical discovery: A curriculum-grounded characterization" aria-label="View larger figure: From mathematical structure to physical discovery: A curriculum-grounded characterization">
+              <span class="figure-frame"><img src="images/publications/mathematical-discovery-thumb.webp" alt="Two physical systems: a sphere falling through a fluid with gravity and drag forces, and a resistor–capacitor circuit." width="640" height="332" loading="lazy" decoding="async"></span>
+              <span class="figure-action" aria-hidden="true">View figure ↗</span>
+            </a>
+            <div class="publication-copy">
             <h3><a href="https://doi.org/10.1103/x43w-y42m" target="_blank" rel="noopener noreferrer">From mathematical structure to physical discovery: A curriculum-grounded characterization</a></h3>
             <p class="authors"><strong>T. Reshef-Israeli</strong> &amp; D. Klein</p>
             <p class="venue"><em>Physical Review Physics Education Research</em></p>
             <p class="publication-summary">A framework distinguishing the physical insights learners can discover from the mathematical moves that enable those discoveries.</p>
             <div class="paper-footer"><span class="badge badge-neutral">In press</span><a class="paper-link" href="https://doi.org/10.1103/x43w-y42m" target="_blank" rel="noopener noreferrer">Article ↗</a></div>
+            </div>
           </li>
-          <li class="publication" data-status="in-press" id="paper-air-density">
+          <li class="publication has-figure" data-status="in-press" id="paper-air-density">
+            <a class="publication-figure" href="images/publications/air-density.png" data-figure-title="Measuring air density with a falling beach ball" aria-label="View larger figure: Measuring air density with a falling beach ball">
+              <span class="figure-frame"><img src="images/publications/air-density-thumb.webp" alt="Photograph of three balls used in the falling-ball activity, with their masses and radii labeled." width="640" height="388" loading="lazy" decoding="async"></span>
+              <span class="figure-action" aria-hidden="true">View figure ↗</span>
+            </a>
+            <div class="publication-copy">
             <h3>Measuring air density with a falling beach ball</h3>
             <p class="authors"><strong>T. Reshef-Israeli</strong> &amp; S. Kapon</p>
             <p class="venue"><em>The Physics Teacher</em></p>
             <div class="paper-footer"><span class="badge badge-neutral">In press</span></div>
+            </div>
           </li>
-          <li class="publication" data-status="published" id="paper-layered-drag">
+          <li class="publication has-figure" data-status="published" id="paper-layered-drag">
+            <a class="publication-figure" href="images/publications/layered-drag-modeling.png" data-figure-title="Layered modeling of a real-world drag-force problem: A pedagogical journey from idealized to realistic physics" aria-label="View larger figure: Layered modeling of a real-world drag-force problem: A pedagogical journey from idealized to realistic physics">
+              <span class="figure-frame"><img src="images/publications/layered-drag-modeling-thumb.webp" alt="Velocity versus position for a car and a cyclist, comparing successive models of the drag-force problem." width="640" height="427" loading="lazy" decoding="async"></span>
+              <span class="figure-action" aria-hidden="true">View figure ↗</span>
+            </a>
+            <div class="publication-copy">
             <h3><a href="https://doi.org/10.1088/1361-6404/ae0d16" target="_blank" rel="noopener noreferrer">Layered modeling of a real-world drag-force problem: A pedagogical journey from idealized to realistic physics</a></h3>
             <p class="authors"><strong>T. Reshef-Israeli</strong> &amp; S. Kapon</p>
             <p class="venue"><em>European Journal of Physics</em>, 46(6), 065701 · 2025</p>
             <div class="paper-footer"><a class="paper-link" href="https://doi.org/10.1088/1361-6404/ae0d16" target="_blank" rel="noopener noreferrer">Article ↗</a></div>
+            </div>
           </li>
-          <li class="publication" data-status="published" id="paper-layered-learning">
+          <li class="publication has-figure" data-status="published" id="paper-layered-learning">
+            <a class="publication-figure" href="images/publications/layered-modeling-learning.png" data-figure-title="Engaging students in collaborative layered modeling of a real-world problem" aria-label="View larger figure: Engaging students in collaborative layered modeling of a real-world problem">
+              <span class="figure-frame"><img src="images/publications/layered-modeling-learning-thumb.webp" alt="Flowchart of a layered modeling activity, connecting models, solutions, evaluation and online resources." width="360" height="480" loading="lazy" decoding="async"></span>
+              <span class="figure-action" aria-hidden="true">View figure ↗</span>
+            </a>
+            <div class="publication-copy">
             <h3><a href="https://doi.org/10.1088/1361-6552/adf0d7" target="_blank" rel="noopener noreferrer">Engaging students in collaborative layered modeling of a real-world problem</a></h3>
             <p class="authors"><strong>T. Reshef-Israeli</strong> &amp; S. Kapon</p>
             <p class="venue"><em>Physics Education</em>, 60(5), 055026 · 2025</p>
             <div class="paper-footer"><a class="paper-link" href="https://doi.org/10.1088/1361-6552/adf0d7" target="_blank" rel="noopener noreferrer">Article ↗</a></div>
+            </div>
           </li>
-          <li class="publication" data-status="published">
+          <li class="publication has-figure" data-status="published" id="paper-sensemaking">
+            <a class="publication-figure" href="images/publications/collaborative-sensemaking.png" data-figure-title="Collaborative sensemaking: The emergence of insights in a distributed knowledge system" aria-label="View larger figure: Collaborative sensemaking: The emergence of insights in a distributed knowledge system">
+              <span class="figure-frame"><img src="images/publications/collaborative-sensemaking-thumb.webp" alt="Branching diagram showing how epistemic actions and partial insights contribute to a shared insight." width="640" height="226" loading="lazy" decoding="async"></span>
+              <span class="figure-action" aria-hidden="true">View figure ↗</span>
+            </a>
+            <div class="publication-copy">
             <h3><a href="https://doi.org/10.1119/perc.2024.pr.Reshef-Israeli" target="_blank" rel="noopener noreferrer">Collaborative sensemaking: The emergence of insights in a distributed knowledge system</a></h3>
             <p class="authors"><strong>T. Reshef-Israeli</strong> &amp; S. Kapon</p>
             <p class="venue"><em>Physics Education Research Conference Proceedings</em>, 361–366 · 2024</p>
             <div class="paper-footer"><a class="paper-link" href="https://doi.org/10.1119/perc.2024.pr.Reshef-Israeli" target="_blank" rel="noopener noreferrer">Article ↗</a></div>
+            </div>
           </li>
-          <li class="publication" data-status="published">
+          <li class="publication has-figure" data-status="published" id="paper-population">
+            <a class="publication-figure" href="images/publications/population-switching.png" data-figure-title="Population switching under a time-varying environment" aria-label="View larger figure: Population switching under a time-varying environment">
+              <span class="figure-frame"><img src="images/publications/population-switching-thumb.webp" alt="Graph from the population-switching study, showing several colored data series and an inset." width="500" height="389" loading="lazy" decoding="async"></span>
+              <span class="figure-action" aria-hidden="true">View figure ↗</span>
+            </a>
+            <div class="publication-copy">
             <h3><a href="https://doi.org/10.1103/PhysRevE.101.022109" target="_blank" rel="noopener noreferrer">Population switching under a time-varying environment</a></h3>
             <p class="authors"><strong>T. Israeli</strong> &amp; M. Assaf</p>
             <p class="venue"><em>Physical Review E</em>, 101(2), 022109 · 2020</p>
             <div class="paper-footer"><a class="paper-link" href="https://doi.org/10.1103/PhysRevE.101.022109" target="_blank" rel="noopener noreferrer">Article ↗</a></div>
+            </div>
           </li>
           <li class="publication" data-status="under-review" id="paper-uncertainty">
             <h3>Tracing epistemic uncertainty in real time: Functions and peer uptake in collaborative mathematical modelling</h3>
@@ -397,6 +485,15 @@
     </main>
   </div>
   <footer class="bottom"><span>© 2026 Tom Reshef-Israeli</span><span>Last updated October 2026 · <a href="#main">Back to top ↑</a></span></footer>
+
+  <dialog class="figure-dialog" id="publication-figure-dialog" aria-labelledby="figure-dialog-title">
+    <div class="figure-dialog-header">
+      <h2 id="figure-dialog-title">Publication figure</h2>
+      <button type="button" class="figure-close" id="figure-close" autofocus>Close</button>
+    </div>
+    <div class="figure-stage"><img id="figure-preview" alt="" decoding="async" hidden></div>
+    <p class="figure-dialog-footer"><a id="figure-original" target="_blank" rel="noopener noreferrer">Open full-size image ↗</a></p>
+  </dialog>
   <script>
     (() => {
       const controls = document.getElementById('publication-filters');
@@ -424,6 +521,55 @@
           const label = labels[chosen];
           status.textContent = `Showing ${count} ${label} ${count === 1 ? 'work' : 'works'}.`;
         });
+      });
+    })();
+  </script>
+
+  <script>
+    (() => {
+      const dialog = document.getElementById('publication-figure-dialog');
+      // Without native dialog support, each link still opens the original figure.
+      if (!dialog || typeof dialog.showModal !== 'function') return;
+      const preview = document.getElementById('figure-preview');
+      const title = document.getElementById('figure-dialog-title');
+      const original = document.getElementById('figure-original');
+      const closeButton = document.getElementById('figure-close');
+      let opener = null;
+      document.querySelectorAll('.publication-figure').forEach(link => {
+        link.setAttribute('aria-haspopup', 'dialog');
+        link.addEventListener('click', event => {
+          // Preserve browser gestures for opening the source image in another tab.
+          if (event.button !== 0 || event.metaKey || event.ctrlKey || event.shiftKey || event.altKey) return;
+          if (dialog.open) return;
+          preview.src = link.href;
+          preview.alt = link.querySelector('img').alt;
+          preview.hidden = false;
+          title.textContent = link.dataset.figureTitle;
+          original.href = link.href;
+          try {
+            dialog.showModal();
+          } catch (error) {
+            return;
+          }
+          event.preventDefault();
+          opener = link;
+          document.body.classList.add('figure-open');
+          closeButton.focus({ preventScroll: true });
+        });
+      });
+      closeButton.addEventListener('click', () => dialog.close());
+      // Escape uses the browser's native dialog cancel behavior.
+      dialog.addEventListener('click', event => {
+        if (event.target !== dialog) return;
+        const bounds = dialog.getBoundingClientRect();
+        if (event.clientX < bounds.left || event.clientX > bounds.right || event.clientY < bounds.top || event.clientY > bounds.bottom) dialog.close();
+      });
+      dialog.addEventListener('close', () => {
+        document.body.classList.remove('figure-open');
+        preview.hidden = true;
+        preview.removeAttribute('src');
+        if (opener && opener.isConnected) opener.focus({ preventScroll: true });
+        opener = null;
       });
     })();
   </script>
