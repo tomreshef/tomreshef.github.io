@@ -80,13 +80,15 @@
     .badge-neutral { background:#25333f; color:#bccbd5; }
 
     /* Keep the complete scientific figure on a light surface in the dark page. */
-    #research-publications { container-type:inline-size; }
+    #research-publications,.teacher-papers > .publications { container-type:inline-size; }
     .publication.has-figure { display:grid; grid-template-columns:160px minmax(0,1fr); align-items:start; gap:24px; }
     .publication.has-figure[hidden] { display:none; }
     .publication-copy { min-width:0; }
     .publication-figure { display:block; width:160px; max-width:100%; align-self:start; text-decoration:none; }
     .figure-frame { display:flex; align-items:center; justify-content:center; width:100%; aspect-ratio:4 / 3; padding:8px; overflow:hidden; border:1px solid #dce4e7; border-radius:4px; background:#fff; color-scheme:light; }
     .figure-frame img { display:block; width:100%; height:100%; min-width:0; min-height:0; object-fit:contain; }
+    .publication-figure[data-figure-background="dark"] .figure-frame { background:#000; color-scheme:dark; border-color:var(--line); }
+    .photo-credit { color:var(--muted); font-size:11.5px; }
     .figure-action { display:inline-flex; align-items:center; min-height:30px; font-size:11.5px; }
     .publication-figure:hover .figure-frame { border-color:var(--accent); }
     .publication-figure:hover .figure-action { text-decoration:underline; text-underline-offset:3px; }
@@ -108,10 +110,14 @@
     .figure-close { min-width:64px; min-height:44px; padding:7px 12px; border:1px solid var(--line); border-radius:4px; background:var(--soft); color:var(--ink); font-size:13px; cursor:pointer; flex-shrink:0; }
     .figure-close:hover { border-color:var(--accent); color:var(--accent); }
     .figure-stage { min-height:0; overflow:auto; padding:16px; background:#fff; color-scheme:light; }
+    .figure-stage-dark { background:#000; color-scheme:dark; }
     .figure-stage img { display:block; width:auto; max-width:100%; height:auto; margin:auto; }
     .figure-stage img[hidden] { display:none; }
     .figure-dialog-footer { flex-shrink:0; margin:0; padding:7px 16px; font-size:12px; }
     .figure-dialog-footer a { display:inline-flex; align-items:center; min-height:36px; }
+    .figure-credit,.figure-note { margin:2px 0 5px; color:var(--muted); font-size:12px; }
+    .figure-credit[hidden],.figure-note[hidden] { display:none; }
+    .figure-dialog-footer .figure-credit a { display:inline; min-height:0; }
     body.figure-open { overflow:hidden; }
     @media (max-width:400px) {
       .figure-dialog { max-width:calc(100% - 20px); max-height:calc(100vh - 20px); max-height:calc(100dvh - 20px); }
@@ -202,7 +208,7 @@
       h2,h3 { break-after:avoid; }
       .publication { break-inside:avoid; padding:12pt 0; }
       .publication[hidden] { display:block; }
-      #research-publications { container-type:normal; }
+      #research-publications,.teacher-papers > .publications { container-type:normal; }
       .publication.has-figure,.publication.has-figure[hidden] { display:grid; grid-template-columns:100px minmax(0,1fr); gap:16px; }
       .publication-figure { width:100px; }
       .figure-action,.figure-dialog { display:none !important; }
@@ -394,20 +400,55 @@
             <div class="paper-footer"><a class="paper-link" href="https://doi.org/10.1103/PhysRevE.101.022109" target="_blank" rel="noopener noreferrer">Article ↗</a></div>
             </div>
           </li>
-          <li class="publication" data-status="under-review" id="paper-uncertainty">
+          <li class="publication has-figure" data-status="under-review" id="paper-uncertainty">
+              <a class="publication-figure" href="images/publications/epistemic-uncertainty.png" data-figure-title="Tracing epistemic uncertainty in real time: Functions and peer uptake in collaborative mathematical modelling" data-figure-note="under-review" aria-label="View larger figure: Tracing epistemic uncertainty in real time: Functions and peer uptake in collaborative mathematical modelling">
+                <span class="figure-frame"><img src="images/publications/epistemic-uncertainty-thumb.webp" alt="Purple bar chart showing the relative frequency of expressed epistemic uncertainty across six phases of mathematical modeling." width="640" height="285" loading="lazy" decoding="async"></span>
+                <span class="figure-action" aria-hidden="true">View figure ↗</span>
+              </a>
+              <div class="publication-copy">
             <h3>Tracing epistemic uncertainty in real time: Functions and peer uptake in collaborative mathematical modelling</h3>
             <p class="authors"><strong>T. Reshef-Israeli</strong> &amp; S. Kapon</p>
             <p class="venue"><em>ZDM – Mathematics Education</em></p>
             <div class="paper-footer"><span class="badge badge-neutral">Under review</span></div>
-          </li>
+          
+              </div>
+            </li>
         </ul>
         <details class="teacher-papers" id="teacher-articles">
           <summary>Articles for physics teachers · Hebrew (4)</summary>
           <ul class="publications">
-            <li class="publication"><h3>From following instructions to developing experimental thinking: The case of capacitor charging</h3><p class="authors"><strong>T. Reshef-Israeli</strong></p><p class="venue"><em>Tehuda – The Journal of the Israeli Physics Teachers</em>, 42, 43–58 · 2026</p><div class="paper-footer"><a class="paper-link" href="https://doi.org/10.5281/zenodo.22370025" target="_blank" rel="noopener noreferrer">Article ↗</a></div></li>
-            <li class="publication"><h3>Dialogue in the dark: The curious incident of ultraviolet in the night-time</h3><p class="authors"><strong>T. Reshef-Israeli</strong></p><p class="venue"><em>Tehuda – The Journal of the Israeli Physics Teachers</em>, 41, 5–8 · 2025</p><div class="paper-footer"><a class="paper-link" href="https://doi.org/10.5281/zenodo.22368831" target="_blank" rel="noopener noreferrer">Article ↗</a></div></li>
-            <li class="publication"><h3>Energy conservation – without energy!</h3><p class="authors"><strong>T. Reshef-Israeli</strong></p><p class="venue"><em>Tehuda – The Journal of the Israeli Physics Teachers</em>, 39(1–2), 4–16 · 2022</p><div class="paper-footer"><a class="paper-link" href="https://doi.org/10.5281/zenodo.22367267" target="_blank" rel="noopener noreferrer">Article ↗</a></div></li>
-            <li class="publication"><h3>Parachuting – from Leonardo da Vinci to the Millikan experiment</h3><p class="authors"><strong>T. Israeli</strong></p><p class="venue"><em>Tehuda – The Journal of the Israeli Physics Teachers</em>, 38(1–2), 55–76 · 2020</p><div class="paper-footer"><a class="paper-link" href="https://doi.org/10.5281/zenodo.22355755" target="_blank" rel="noopener noreferrer">Article ↗</a></div></li>
+            <li class="publication has-figure" id="teacher-experimental-thinking">
+              <a class="publication-figure" href="images/publications/tehuda-experimental-thinking.png" data-figure-title="From following instructions to developing experimental thinking: The case of capacitor charging" aria-label="View larger figure: From following instructions to developing experimental thinking: The case of capacitor charging">
+                <span class="figure-frame"><img src="images/publications/tehuda-experimental-thinking-thumb.webp" alt="Photograph of an experimental circuit with two digital multimeters, a battery, connecting wires and a capacitor." width="459" height="448" loading="lazy" decoding="async"></span>
+                <span class="figure-action" aria-hidden="true">View figure ↗</span>
+              </a>
+              <div class="publication-copy"><h3>From following instructions to developing experimental thinking: The case of capacitor charging</h3><p class="authors"><strong>T. Reshef-Israeli</strong></p><p class="venue"><em>Tehuda – The Journal of the Israeli Physics Teachers</em>, 42, 43–58 · 2026</p><div class="paper-footer"><a class="paper-link" href="https://doi.org/10.5281/zenodo.22370025" target="_blank" rel="noopener noreferrer">Article ↗</a></div>
+              </div>
+            </li>
+            <li class="publication has-figure" id="teacher-ultraviolet">
+              <a class="publication-figure" href="images/publications/tehuda-ultraviolet.jpg" data-figure-title="Dialogue in the dark: The curious incident of ultraviolet in the night-time" data-figure-background="dark" data-figure-credit="uv-theatre" aria-label="View larger figure: Dialogue in the dark: The curious incident of ultraviolet in the night-time">
+                <span class="figure-frame"><img src="images/publications/tehuda-ultraviolet-thumb.webp" alt="Performers in a black-light theatre, with blue, green and red fluorescent costumes and props glowing against a black background." width="640" height="480" loading="lazy" decoding="async"></span>
+                <span class="figure-action" aria-hidden="true">View figure ↗</span>
+              </a>
+              <div class="publication-copy"><h3>Dialogue in the dark: The curious incident of ultraviolet in the night-time</h3><p class="authors"><strong>T. Reshef-Israeli</strong></p><p class="venue"><em>Tehuda – The Journal of the Israeli Physics Teachers</em>, 41, 5–8 · 2025</p><div class="paper-footer"><a class="paper-link" href="https://doi.org/10.5281/zenodo.22368831" target="_blank" rel="noopener noreferrer">Article ↗</a><span class="photo-credit">Photo: <a href="https://commons.wikimedia.org/wiki/File:Black_light_theatre_Prague_HILT_05.jpg" target="_blank" rel="noopener noreferrer">Black light theatre Prague</a> · <a href="https://creativecommons.org/licenses/by-sa/4.0/" target="_blank" rel="noopener noreferrer">CC BY-SA 4.0</a></span></div>
+              </div>
+            </li>
+            <li class="publication has-figure" id="teacher-energy">
+              <a class="publication-figure" href="images/publications/tehuda-energy-without-energy.png" data-figure-title="Energy conservation – without energy!" aria-label="View larger figure: Energy conservation – without energy!">
+                <span class="figure-frame"><img src="images/publications/tehuda-energy-without-energy-thumb.webp" alt="Diagram comparing a curved descent with successive inclined-plane segments to calculate gravitational work, with a magnified force-and-displacement triangle." width="640" height="263" loading="lazy" decoding="async"></span>
+                <span class="figure-action" aria-hidden="true">View figure ↗</span>
+              </a>
+              <div class="publication-copy"><h3>Energy conservation – without energy!</h3><p class="authors"><strong>T. Reshef-Israeli</strong></p><p class="venue"><em>Tehuda – The Journal of the Israeli Physics Teachers</em>, 39(1–2), 4–16 · 2022</p><div class="paper-footer"><a class="paper-link" href="https://doi.org/10.5281/zenodo.22367267" target="_blank" rel="noopener noreferrer">Article ↗</a></div>
+              </div>
+            </li>
+            <li class="publication has-figure" id="teacher-parachuting">
+              <a class="publication-figure" href="images/publications/tehuda-parachuting.png" data-figure-title="Parachuting – from Leonardo da Vinci to the Millikan experiment" aria-label="View larger figure: Parachuting – from Leonardo da Vinci to the Millikan experiment">
+                <span class="figure-frame"><img src="images/publications/tehuda-parachuting-thumb.webp" alt="Velocity-versus-time graph comparing experimental data with predictions for linear and quadratic drag." width="640" height="397" loading="lazy" decoding="async"></span>
+                <span class="figure-action" aria-hidden="true">View figure ↗</span>
+              </a>
+              <div class="publication-copy"><h3>Parachuting – from Leonardo da Vinci to the Millikan experiment</h3><p class="authors"><strong>T. Israeli</strong></p><p class="venue"><em>Tehuda – The Journal of the Israeli Physics Teachers</em>, 38(1–2), 55–76 · 2020</p><div class="paper-footer"><a class="paper-link" href="https://doi.org/10.5281/zenodo.22355755" target="_blank" rel="noopener noreferrer">Article ↗</a></div>
+              </div>
+            </li>
           </ul>
         </details>
       </section>
@@ -491,8 +532,12 @@
       <h2 id="figure-dialog-title">Publication figure</h2>
       <button type="button" class="figure-close" id="figure-close" autofocus>Close</button>
     </div>
-    <div class="figure-stage"><img id="figure-preview" alt="" decoding="async" hidden></div>
-    <p class="figure-dialog-footer"><a id="figure-original" target="_blank" rel="noopener noreferrer">Open full-size image ↗</a></p>
+    <div class="figure-stage" id="figure-stage"><img id="figure-preview" alt="" decoding="async" hidden></div>
+    <div class="figure-dialog-footer">
+      <a id="figure-original" target="_blank" rel="noopener noreferrer">Open full-size image ↗</a>
+      <p class="figure-credit" id="figure-credit" hidden>Photo: Black light theatre Prague · <a href="https://commons.wikimedia.org/wiki/File:Black_light_theatre_Prague_HILT_05.jpg" target="_blank" rel="noopener noreferrer">Wikimedia Commons</a> · <a href="https://creativecommons.org/licenses/by-sa/4.0/" target="_blank" rel="noopener noreferrer">CC BY-SA 4.0</a>. Thumbnail resized; original unchanged.</p>
+      <p class="figure-note" id="figure-note" hidden>Figure from a manuscript under review.</p>
+    </div>
   </dialog>
   <script>
     (() => {
@@ -534,6 +579,9 @@
       const title = document.getElementById('figure-dialog-title');
       const original = document.getElementById('figure-original');
       const closeButton = document.getElementById('figure-close');
+      const stage = document.getElementById('figure-stage');
+      const credit = document.getElementById('figure-credit');
+      const note = document.getElementById('figure-note');
       let opener = null;
       document.querySelectorAll('.publication-figure').forEach(link => {
         link.setAttribute('aria-haspopup', 'dialog');
@@ -546,6 +594,9 @@
           preview.hidden = false;
           title.textContent = link.dataset.figureTitle;
           original.href = link.href;
+          stage.classList.toggle('figure-stage-dark', link.dataset.figureBackground === 'dark');
+          credit.hidden = link.dataset.figureCredit !== 'uv-theatre';
+          note.hidden = link.dataset.figureNote !== 'under-review';
           try {
             dialog.showModal();
           } catch (error) {
@@ -568,6 +619,9 @@
         document.body.classList.remove('figure-open');
         preview.hidden = true;
         preview.removeAttribute('src');
+        stage.classList.remove('figure-stage-dark');
+        credit.hidden = true;
+        note.hidden = true;
         if (opener && opener.isConnected) opener.focus({ preventScroll: true });
         opener = null;
       });
